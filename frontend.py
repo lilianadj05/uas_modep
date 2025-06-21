@@ -4,6 +4,9 @@ import numpy as np
 import pandas as pd
 import requests
 
+model = joblib.load('model_ranfor_oop.pkl')
+encoder = joblib.load('encoders_oop.pkl')
+
 def main():
     st.title('Obesity Prediction - UAS Model Deployment')
 
@@ -50,9 +53,11 @@ def main():
 
 
 def make_prediction(features):
-    response=requests.post("http://127.0.0.1:8000/predict", json=features)
-    prediction = response.json()["prediction"]     
-    return prediction
+    #response=requests.post("http://127.0.0.1:8000/predict", json=features)
+    #prediction = response.json()["prediction"]
+    prediction = model.predict(features)
+    label = encoder.inverse_transform(prediction)
+    return label[0]
 
 
 if __name__ == '__main__':
