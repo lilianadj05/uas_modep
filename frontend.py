@@ -55,7 +55,8 @@ def main():
 def make_prediction(features):
     #response=requests.post("http://127.0.0.1:8000/predict", json=features)
     #prediction = response.json()["prediction"]
-    prediction = model.predict(features)
+    df = pd.DataFrame([features])
+    prediction = model.predict(df)
     label = encoder.inverse_transform(prediction)
     return label[0]
 
