@@ -4,8 +4,8 @@ import numpy as np
 import pandas as pd
 import requests
 
-model = joblib.load('model_ranfor_oop.pkl')
-encoder = joblib.load('encoders_oop.pkl')
+model = joblib.load('model.pkl')
+encoder = joblib.load('encoder.pkl')
 
 def main():
     st.title('Obesity Prediction - UAS Model Deployment')
