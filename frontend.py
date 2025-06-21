@@ -46,16 +46,13 @@ def main():
         'MTRANS': mtrans
     }
 
-    if st.button('Predict'):
-        features=data     
-        result = make_prediction(features)
+    if st.button('Predict'):    
+        result = make_prediction(data)
         st.success(f'The prediction is: {result}')
 
 
-def make_prediction(features):
-    #response=requests.post("http://127.0.0.1:8000/predict", json=features)
-    #prediction = response.json()["prediction"]
-    df = pd.DataFrame([features])
+def make_prediction(data):
+    df = pd.DataFrame([data])
     prediction = model.predict(df)
     label = encoder.inverse_transform(prediction)
     return label[0]
